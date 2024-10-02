@@ -11,8 +11,30 @@
 <body>
     <div id="library">
         <div id="book">This is a book</div>
-        <button  type="button" id="newBook">Add Book To Library</button>
+        <button  type="button" id="addNewBook">Add Book To Library</button>
     </div>
+
+    <div class="book-form" id="bookForm">
+        <button class="close-btn" id="close">X</button>
+        <div class="form-content">
+            <h1>Add a Book!</h1>
+            <form class="add-book">
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="1984" class="form-input">
+                </div>
+                <div>
+                    <label for="author">Author</label>
+                    <input type="text" id="author" placeholder="George Orwell" class="form-input">
+                </div>
+                <div>
+                    <label for="pages">Number of Pages</label>
+                    <input type="text" id="pages" placeholder="298" class="form-input">
+                </div>
+                <button type="submit" class="submit-book" id="submitBook">Add New Book</button>
+            </form>
+        </div>
+    </div>    
     <script src="script.js"></script>
 </body>
 </html>
