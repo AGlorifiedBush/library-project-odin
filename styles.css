@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div#library {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+div#book {
+    border: 4px solid black;
+    min-height: 550px;
+}
+
+button#newBook {
+    border: 4px solid black;
+}
