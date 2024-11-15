@@ -1,43 +1,66 @@
-
-const addNewBook = document.getElementById("add-new-book");
-const bookForm = document.getElementById("book-form")
-const submitBook = document.getElementById("submit-book")
-const close = document.getElementById("close")
-
-bookForm.addEventListener("submit", () => {
-    event.preventDefault();
-    newBook();
-    bookForm.classList.remove("open")   
-});
-
-addNewBook.addEventListener("click", () => {
-    bookForm.classList.add("open")
-})
-
-close.addEventListener("click", () => {
-    bookForm.classList.remove("open")
-})
-
 const library = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+(function init() {
+    const addNewBook = document.getElementById("add-new-book");
+
+    const bookForm = document.getElementById("book-form")
+
+    const submitBook = document.getElementById("submit-book")
+
+    const close = document.getElementById("close")
+    
+    bookForm.addEventListener("submit", () => {
+        event.preventDefault();
+        pushBook();
+        bookForm.classList.remove("open")   
+    });
+    
+    addNewBook.addEventListener("click", () => {
+        bookForm.classList.add("open")
+    })
+    
+    close.addEventListener("click", () => {
+        bookForm.classList.remove("open")
+    })
+})()
+
+class Book {
+    title = ""
+    author = ""
+    pages = 0
+    read = false
+
+    constructor(){
+        this.setTitle()
+        this.setAuthor()
+        this.setPages()
+        this.setRead()
+    }
+
+    setTitle() {
+        this.title = document.getElementById("title").value;
+    }
+
+    setAuthor() {
+        this.author = document.getElementById("author").value;
+    }
+
+    setPages() {
+        this.pages = document.getElementById("pages").value;
+    }
+
+    setRead() {
+        this.read = document.getElementById("read").checked;
+    }
 }
 
 Book.prototype.toggleRead = function() {
     this.read = !this.read;
 }
 
-function newBook() {
-    let title = document.getElementById("title").value;
-    let author = document.getElementById("author").value;
-    let pages = document.getElementById("pages").value;
-    let read = document.getElementById("read").checked;
-    let nextBook = new Book(title, author, pages, read);
-    library.push(nextBook);
+function pushBook(){
+    let newBook = new Book();
+    library.push(newBook);
     refreshLibrary();
 }
 
@@ -55,7 +78,7 @@ function refreshLibrary() {
             </div>
             <div class="book-details">
                 <p>${book.pages} pages</p>
-                <p class="read-status">${book.read ? "Read" : "Not Read/Finished Yet"}</p>
+                <p class="read-status">${book.read ? "Read" : "Haven't Read"}</p>
             </div>
             <div class="buttons">
                 <button class="toggle-read" onclick="toggleRead(${i})">Toggle Read</button>
